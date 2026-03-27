@@ -15,6 +15,7 @@
 static void service_time_update(void);
 static void service_adjust_output(void);
 static void service_pwm_capture(void);
+static void service_pwm_freq_abnormal_check(void);
 static char msg[256];
 static void service_uart_send_message(void)
 {
@@ -37,9 +38,13 @@ void service_tick_run(void)
     {
         time.last_adc_get_tick = HAL_GetTick();
         adc_get_value();
-        service_adjust_para_update();
-        service_adjust_output();
+        if (!pwm_state.st)
+        {
+            service_adjust_para_update();
+            service_adjust_output();
+        }
         service_pwm_capture();
+        service_pwm_freq_abnormal_check();
     }
     // 10ms
     if (HAL_GetTick() - time.last_key_tick >= 10)
@@ -108,10 +113,9 @@ void service_adjust_para_update(void)
     adc.duty_segment_value = 4096 / adc.duty_segment;
     adc.fre_segment_value = 4096 / adc.fre_segment;
 }
-uint16_t duty_segment_num, fre_segment_num;
 static void service_adjust_output(void)
 {
-
+    uint16_t duty_segment_num, fre_segment_num;
     uint16_t arr, cmp;
     duty_segment_num = adc.a_value / adc.duty_segment_value;
     fre_segment_num = adc.b_value / adc.fre_segment_value;
@@ -187,3 +191,24 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
     }
 }
 /* Your code here */
+static void service_pwm_freq_abnormal_check(void)
+{
+    static uint8_t is_abnormal;
+    int16_t xf = pwm_state.cf - pwm_state.df;
+    if (xf < 0)
+        xf = -xf;
+    if (xf > 1000 && !is_abnormal)
+    {
+        pwm_abnormal.flag = 1;
+        is_abnormal = 1;
+        pwm_abnormal.cf = pwm_state.cf;
+        pwm_abnormal.cd = pwm_state.cd;
+        pwm_abnormal.df = pwm_state.df;
+        pwm_abnormal.xf = xf;
+    }
+    else if (xf < 1000)
+    {
+        pwm_abnormal.flag = 0;
+        is_abnormal = 0;
+    }
+}

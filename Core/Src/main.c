@@ -90,9 +90,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-  uint16_t val;
-  char buf[10];
-  uint8_t adc_num = 0;
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -140,60 +138,9 @@ int main(void)
 
   while (1)
   {
-    // if(key_get_value()==3) led_set(LED_3,GPIO_PIN_RESET);
-    // else if(key_get_value()==4) led_set(LED_3,GPIO_PIN_SET);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    // ADC采集实验
-    //  HAL_ADC_Start(hadcx[adc_num]);
-    //  HAL_Delay(1);
-    //  val = HAL_ADC_GetValue(hadcx[adc_num]);
-    //  // 使用 sprintf 替代 itoa
-    //  sprintf(buf, "%u\r\n", val);
-    //  HAL_UART_Transmit(&huart1, (uint8_t *)buf, strlen(buf), 10);
-    //  adc_num++;
-    //  adc_num %= 2;
-    //  HAL_Delay(1000);
-
-    // PWM捕获实验
-    // if (cap_t.flag)
-    // {
-    //   // 计算高电平持续时间（考虑溢出处理）
-    //   if (cap_t.buf[1] >= cap_t.buf[0])
-    //   {
-    //     cap_t.high_level_ticks = cap_t.buf[1] - cap_t.buf[0];
-    //   }
-    //   else
-    //   {
-    //     // TIM2是32位定时器，处理溢出
-    //     cap_t.high_level_ticks = (0xFFFFFFFF - cap_t.buf[0]) + cap_t.buf[1] + 1;
-    //   }
-    //   // 计算低电平持续时间(考虑溢出时间)
-    //   if (cap_t.buf[2] >= cap_t.buf[1])
-    //   {
-    //     cap_t.low_level_ticks = cap_t.buf[2] - cap_t.buf[1];
-    //   }
-    //   else
-    //   {
-    //     // TIM2是32位定时器，处理溢出
-    //     cap_t.low_level_ticks = (0xFFFFFFFF - cap_t.buf[1]) + cap_t.buf[2] + 1;
-    //   }
-    //   cap_t.total_ticks = cap_t.high_level_ticks + cap_t.low_level_ticks;
-    //   cap_t.duty = cap_t.high_level_ticks * 100 / cap_t.total_ticks;
-    //   cap_t.freq = cap_t.samp_freq / cap_t.total_ticks;
-    //   cap_t.flag = 0;
-    //   // 1. 先格式化基本信息
-    //   sprintf(msg, "Freq: %lu Hz", cap_t.freq);
-
-    //   // 2. 拼接捕获到的结果
-    //   sprintf(msg + strlen(msg), " | Duty: %lu %%", cap_t.duty);
-    // }
-    // // 3. 串口发送
-    // HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), 100);
-    // HAL_Delay(1000);
-
     //定时模块
     service_tick_run();
   }

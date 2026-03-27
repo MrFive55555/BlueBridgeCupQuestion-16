@@ -103,8 +103,10 @@ void ui_manage_led(void)
         led_set(LED_2, GPIO_PIN_RESET);
     else
         led_set(LED_2, GPIO_PIN_SET);
-    // if(pwm_abnormal == PAGE_MONITOR) led_set(LED_1,GPIO_PIN_RESET);
-    // else led_set(LED_1,GPIO_PIN_SET);
+    if (pwm_abnormal.flag)
+        led_set(LED_3, GPIO_PIN_RESET);
+    else
+        led_set(LED_3, GPIO_PIN_SET);
 }
 /**
  * initialize ui when power up
@@ -267,9 +269,6 @@ void ui_parameter_update(ui_update_t type)
         snprintf(statistics.cf, sizeof(statistics.cf), "%d", pwm_abnormal.cf);
         snprintf(statistics.cd, sizeof(statistics.cd), "%d", pwm_abnormal.cd);
         snprintf(statistics.df, sizeof(statistics.df), "%d", pwm_abnormal.df);
-        int16_t xf = pwm_state.cf - pwm_state.df;
-        if (xf < 0)
-            xf = -xf;
         snprintf(statistics.xf, sizeof(statistics.xf), "%d", pwm_abnormal.xf);
     }
     else if (type == PWM_PARAMETER)

@@ -21,6 +21,7 @@ typedef struct
     uint16_t cd;
     uint16_t df;
     uint16_t xf;
+    uint16_t flag;
 } pwm_abnormal_t;
 typedef struct
 {

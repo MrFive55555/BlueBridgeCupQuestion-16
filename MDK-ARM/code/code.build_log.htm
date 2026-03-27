@@ -27,11 +27,51 @@ Project File Date:  03/24/2026
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\Keil\ARM\ARMC5\Bin'
 Build target 'code'
+compiling data_base.c...
+compiling adc.c...
+..\Bsp\adc.c(21): warning:  #1-D: last line of file ends without a newline
+  /* Your code here */
+..\Bsp\adc.c: 1 warning, 0 errors
+compiling main.c...
 compiling service.c...
+compiling ui.c...
+..\App\ui.c(63): warning:  #83-D: type qualifier specified more than once
+  static const ui_page_fun const page_fun[3] = {
+..\App\ui.c(262): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(monitor.cf, sizeof(monitor.cf), "%d", pwm_state.cf);
+..\App\ui.c(263): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(monitor.cd, sizeof(monitor.cd), "%d", pwm_state.cd);
+..\App\ui.c(264): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(monitor.df, sizeof(monitor.df), "%d", pwm_state.df);
+..\App\ui.c(269): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(statistics.cf, sizeof(statistics.cf), "%d", pwm_abnormal.cf);
+..\App\ui.c(270): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(statistics.cd, sizeof(statistics.cd), "%d", pwm_abnormal.cd);
+..\App\ui.c(271): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(statistics.df, sizeof(statistics.df), "%d", pwm_abnormal.df);
+..\App\ui.c(272): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(statistics.xf, sizeof(statistics.xf), "%d", pwm_abnormal.xf);
+..\App\ui.c(276): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(parameter.ds, sizeof(parameter.ds), "%d", pwm_parameter.ds);
+..\App\ui.c(277): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(parameter.dr, sizeof(parameter.dr), "%d", pwm_parameter.dr);
+..\App\ui.c(278): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(parameter.fs, sizeof(parameter.fs), "%d", pwm_parameter.fs);
+..\App\ui.c(279): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+          snprintf(parameter.fr, sizeof(parameter.fr), "%d", pwm_parameter.fr);
+..\App\ui.c(292): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+              snprintf(ui_time.sec, sizeof(ui_time.sec), "%d", time.sec);
+..\App\ui.c(302): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+              snprintf(ui_time.min, sizeof(ui_time.min), "%d", time.min);
+..\App\ui.c(312): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+              snprintf(ui_time.hour, sizeof(ui_time.hour), "%d", time.hour);
+..\App\ui.c(444): warning:  #1-D: last line of file ends without a newline
+  }
+..\App\ui.c: 16 warnings, 0 errors
 linking...
-Program Size: Code=21596 RO-data=5164 RW-data=200 ZI-data=2200  
+Program Size: Code=21700 RO-data=5164 RW-data=188 ZI-data=2204  
 FromELF: creating hex file...
-"code\code.axf" - 0 Error(s), 0 Warning(s).
+"code\code.axf" - 0 Error(s), 17 Warning(s).
 
 <h2>Software Packages used:</h2>
 
